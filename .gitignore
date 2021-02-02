@@ -1,0 +1,12 @@
+.stack-work/
+*~
+*.hi
+*.o
+src/chp22/Sum
+src/chp23/InputSum
+src/chp24/Hellofile
+src/chp24/FileCount
+src/chp24/stats.dat
+src/chp24/goodbye.txt
+src/chp24/CP
+src/chp24/Capitalize

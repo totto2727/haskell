@@ -1,0 +1,32 @@
+{
+    "name" : "Haskell",
+    "dockerComposeFile":"docker-compose.yaml",
+    "service": "workspace",
+	"workspaceFolder": "/workspace",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/zsh",
+		"haskell.formattingProvider": "brittany",
+	},
+    "extensions": [
+		//
+		"haskell.haskell",
+		//
+		"oderwat.indent-rainbow",
+		"christian-kohler.path-intellisense",
+		"2gua.rainbow-brackets",
+		"mosapride.zenkaku",
+		"tomoki1207.vscode-input-sequence",
+		"quicktype.quicktype",
+		"eamodio.gitlens",
+		"donjayamanne.githistory",
+		"mhutchie.git-graph",
+		"wmaurer.change-case",
+		"ms-azuretools.vscode-docker",
+		"ms-kubernetes-tools.vscode-kubernetes-tools",
+		"visualstudioexptteam.vscodeintellicode",
+		"mechatroner.rainbow-csv",
+		"tomoki1207.pdf",
+		"ics.japanese-proofreading"
+	],
+	"postCreateCommand": "stack setup"
+}
