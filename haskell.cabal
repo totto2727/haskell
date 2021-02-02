@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 23a2017c8c2fdc666a2cea0be8be251522ea5e8db2ca0726fb1e5a6d3ec0b2ab
+-- hash: 8e335470f78ffd599b3b444294884b90d393d69050153d6384c469c3281e302f
 
 name:           haskell
 version:        0.1.0.0
@@ -27,7 +27,6 @@ source-repository head
 
 library
   exposed-modules:
-      Chp20
       Lib
   other-modules:
       Paths_haskell
@@ -35,6 +34,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , containers
     , split
     , text
@@ -49,6 +49,7 @@ executable haskell-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , containers
     , haskell
     , split
@@ -65,6 +66,7 @@ test-suite haskell-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , containers
     , haskell
     , split
