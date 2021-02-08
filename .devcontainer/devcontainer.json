@@ -28,5 +28,4 @@
 		"tomoki1207.pdf",
 		"ics.japanese-proofreading"
 	],
-	"postCreateCommand": "stack setup"
 }

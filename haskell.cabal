@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8e335470f78ffd599b3b444294884b90d393d69050153d6384c469c3281e302f
+-- hash: 12762a106171f0247a604161cf37630d75fb205b8ddb480e6bad20da13523151
 
 name:           haskell
 version:        0.1.0.0
@@ -36,6 +36,7 @@ library
       base >=4.7 && <5
     , bytestring
     , containers
+    , random
     , split
     , text
   default-language: Haskell2010
@@ -52,6 +53,7 @@ executable haskell-exe
     , bytestring
     , containers
     , haskell
+    , random
     , split
     , text
   default-language: Haskell2010
@@ -69,6 +71,7 @@ test-suite haskell-test
     , bytestring
     , containers
     , haskell
+    , random
     , split
     , text
   default-language: Haskell2010

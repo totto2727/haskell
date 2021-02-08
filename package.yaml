@@ -25,6 +25,7 @@ dependencies:
 - containers
 - text
 - bytestring
+- random
 
 library:
   source-dirs: src

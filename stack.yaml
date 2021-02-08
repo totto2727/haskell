@@ -2,5 +2,7 @@ packages:
 - .
 extra-deps:
 - split-0.2.3.4@sha256:bad9bfc9e8e0aca4ac1f7b3a2767ee6b1c199d4a1b6960db5cc3d7674aee5d73,2564
+- splitmix-0.1.0.3@sha256:fc3aae74c467f4b608050bef53aec17904a618731df9407e655d8f3bf8c32d5c,6049
+- random-1.2.0@sha256:3337fb944048b49ada7ac70771e9040382da8dcc7058570dd6835af5cc40b822,6094
 resolver:
   compiler: ghc-8.10.2
