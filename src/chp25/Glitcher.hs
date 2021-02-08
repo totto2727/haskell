@@ -1,57 +1,71 @@
 {-# LANGUAGE OverloadedStrings #-}
-import System.Environment
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Char8 as BC
-import System.Random
-import Control.Monad
+import           Control.Monad
+import qualified Data.ByteString               as B
+import qualified Data.ByteString.Char8         as BC
+import           System.Environment
+import           System.Random
 
-sortSection::Int->Int->BC.ByteString ->BC.ByteString
-sortSection start size bytes=
-    let
-        (before,rest)=BC.splitAt start bytes
-        (target,after)=BC.splitAt size rest
-        changed=BC.reverse target
-    in
-        mconcat [before,changed,after]
+sortSection :: Int -> Int -> BC.ByteString -> BC.ByteString
+sortSection start size bytes =
+    let (before, rest ) = BC.splitAt start bytes
+        (target, after) = BC.splitAt size rest
+        changed         = BC.reverse target
+    in  mconcat [before, changed, after]
 
-randomSortSection::BC.ByteString ->IO BC.ByteString
-randomSortSection bytes=do
-    let size=25
-    let bytesLength=BC.length bytes
-    start<-randomRIO (0,bytesLength-size)
+randomSortSection :: BC.ByteString -> IO BC.ByteString
+randomSortSection bytes = do
+    let size        = 25
+    let bytesLength = BC.length bytes
+    start <- randomRIO (0, bytesLength - size)
     return $ sortSection start size bytes
 
-intToChar::Int ->Char
-intToChar int=toEnum (int `mod` 255)
+reverseSection :: Int -> Int -> BC.ByteString -> BC.ByteString
+reverseSection location size bytes =
+    let (before, rest ) = BC.splitAt location bytes
+        (target, after) = BC.splitAt size rest
+        reversed        = BC.reverse target
+    in  mconcat [before, reversed, after]
 
-intToBC::Int->BC.ByteString
-intToBC int=BC.pack [intToChar int]
+randomReverseSection :: BC.ByteString -> IO BC.ByteString
+randomReverseSection bytes = do
+    let bytesLength = BC.length bytes
+    let size        = 25
+    location <- randomRIO (0, bytesLength - size)
+    return $ reverseSection location size bytes
 
-replaceByte::Int->Int ->BC.ByteString ->BC.ByteString
-replaceByte location char bytes=
-    let
-        (before,rest)=BC.splitAt location  bytes
-        after=BC.drop 1 rest
-    in
-        mconcat [before,intToBC char,after]
+intToChar :: Int -> Char
+intToChar int = toEnum (int `mod` 255)
 
-randomReplaceBytes::BC.ByteString ->IO BC.ByteString
-randomReplaceBytes bytes=do
-    let bytesLength=BC.length bytes
-    location<-randomRIO (0,bytesLength)
-    int<-randomRIO (0,255)
-    return $ replaceByte location int  bytes
+intToBC :: Int -> BC.ByteString
+intToBC int = BC.pack [intToChar int]
 
-glitcheActions::[BC.ByteString ->IO BC.ByteString]
-glitcheActions=mconcat [replicate 3 randomSortSection ,replicate 2 randomReplaceBytes]
+replaceByte :: Int -> Int -> BC.ByteString -> BC.ByteString
+replaceByte location char bytes =
+    let (before, rest) = BC.splitAt location bytes
+        after          = BC.drop 1 rest
+    in  mconcat [before, intToBC char, after]
 
-main::IO ()
-main=do
-    args<-getArgs
-    let fileName=head args
-    imageFile<-BC.readFile fileName
-    gliched<-foldM (\bytes func->func bytes) imageFile glitcheActions
-    let glichedFileName=mconcat ["glitched_",fileName]
+randomReplaceBytes :: BC.ByteString -> IO BC.ByteString
+randomReplaceBytes bytes = do
+    let bytesLength = BC.length bytes
+    location <- randomRIO (0, bytesLength)
+    int      <- randomRIO (0, 255)
+    return $ replaceByte location int bytes
+
+glitcheActions :: [BC.ByteString -> IO BC.ByteString]
+glitcheActions = mconcat
+    [ replicate 3 randomSortSection
+    , replicate 5 randomReverseSection
+    , replicate 2 randomReplaceBytes
+    ]
+
+main :: IO ()
+main = do
+    args <- getArgs
+    let fileName = head args
+    imageFile <- BC.readFile fileName
+    gliched   <- foldM (\bytes func -> func bytes) imageFile glitcheActions
+    let glichedFileName = mconcat ["glitched_", fileName]
     BC.writeFile glichedFileName gliched
     print "done"
 
