@@ -8,9 +8,7 @@
 		"haskell.formattingProvider": "brittany",
 	},
     "extensions": [
-		//
 		"haskell.haskell",
-		//
 		"oderwat.indent-rainbow",
 		"christian-kohler.path-intellisense",
 		"2gua.rainbow-brackets",
@@ -26,6 +24,7 @@
 		"visualstudioexptteam.vscodeintellicode",
 		"mechatroner.rainbow-csv",
 		"tomoki1207.pdf",
-		"ics.japanese-proofreading"
+		"ics.japanese-proofreading",
+		"streetsidesoftware.code-spell-checker"
 	],
 }
