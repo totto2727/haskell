@@ -8,7 +8,9 @@
 		"haskell.formattingProvider": "brittany",
 	},
     "extensions": [
+		//必須
 		"haskell.haskell",
+		//便利機能
 		"oderwat.indent-rainbow",
 		"christian-kohler.path-intellisense",
 		"2gua.rainbow-brackets",
