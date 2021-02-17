@@ -9,9 +9,13 @@
         "Innsmouth",
         "Ints",
         "Ligotti",
+        "Monoid",
         "Munroe",
+        "Semigroup",
         "dlat",
         "dlong",
+        "hinq",
+        "mempty",
         "rlat",
         "rlong"
     ]

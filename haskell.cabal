@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 12762a106171f0247a604161cf37630d75fb205b8ddb480e6bad20da13523151
+-- hash: 3da12fefb32245b87b52fd87f3f751080b1db767d93fe30f13c3830c6440fd25
 
 name:           haskell
 version:        0.1.0.0
@@ -32,6 +32,7 @@ library
       Paths_haskell
   hs-source-dirs:
       src
+  default-extensions: OverloadedStrings
   build-depends:
       base >=4.7 && <5
     , bytestring
@@ -47,6 +48,7 @@ executable haskell-exe
       Paths_haskell
   hs-source-dirs:
       app
+  default-extensions: OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
@@ -65,6 +67,7 @@ test-suite haskell-test
       Paths_haskell
   hs-source-dirs:
       test
+  default-extensions: OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
